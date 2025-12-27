@@ -1,0 +1,27 @@
+# Sample Render manifest for deploying this project.
+# Edit service names and env var values after you connect the repo in Render.
+
+services:
+  - type: web
+    name: keystroke-server
+    env: node
+    plan: free
+    branch: main
+    buildCommand: ''
+    startCommand: "npm run start"
+    envVars:
+      - key: PORT
+        value: "5000"
+      - key: ALLOW_PERSISTENCE
+        value: "false"
+
+  - type: static_site
+    name: keystroke-ui
+    env: static
+    plan: free
+    branch: main
+    buildCommand: "cd keystroke-ui && npm ci && npm run build"
+    staticPublishPath: "keystroke-ui/dist"
+    envVars:
+      - key: VITE_API_URL
+        value: "https://keystroke-server.onrender.com" # replace with your backend URL
