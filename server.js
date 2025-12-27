@@ -19,13 +19,17 @@ process.on('exit', (code) => {
   console.log('Process exiting with code', code);
 });
 
-// CORS: accept local dev origins (both localhost and 127.0.0.1) and allow credentials
+// CORS: accept local dev origins and allow credentials. Also support ALLOWED_ORIGINS env var (comma-separated).
 const allowedDevOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
   "http://localhost:5174",
   "http://127.0.0.1:5174"
 ];
+
+// Read ALLOWED_ORIGINS from env (comma separated). If provided, merge with defaults.
+const envAllowed = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()).filter(Boolean) : null;
+const allowedOrigins = envAllowed ? Array.from(new Set([...envAllowed, ...allowedDevOrigins])) : allowedDevOrigins;
 
 app.use((req, res, next) => {
   // simple request logger
@@ -36,8 +40,10 @@ app.use((req, res, next) => {
 app.use(cors({
   origin: (origin, cb) => {
     if (!origin) return cb(null, true); // allow tools like curl
+    // Allow when origin is known
+    if (allowedOrigins.includes(origin)) return cb(null, true);
+    // Allow in development if NODE_ENV is not production and origin matches dev defaults
     if (process.env.NODE_ENV !== 'production' && allowedDevOrigins.includes(origin)) return cb(null, true);
-    // in production you should replace this with your site(s)
     return cb(new Error('Not allowed by CORS'), false);
   },
   credentials: true,
