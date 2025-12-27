@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log*
+# Env
+.env
+.env.*
+.keystore
+.venv/
+# System
+.DS_Store
+Thumbs.db
+# IDEs
+.vscode/
+.idea/
+# Build outputs
+keystroke-ui/dist/
+# Frontend env
+keystroke-ui/.env
+# Logs
+logs/
+*.log
+# Misc
+coverage/

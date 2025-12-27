@@ -1,0 +1,130 @@
+/* Force the root to fill the screen and center the card */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle, #0f2027, #203a43, #000); /* Matches your file */
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/* Ensure the app takes the full screen and centers everything */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle, #0f2027, #203a43, #000);
+  font-family: Inter, Arial, sans-serif;
+  color: #fff;
+}
+
+/* Updated Centering Wrapper */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Login Card Styling */
+.card {
+  background: #161b22; /* Darker background like the first screenshot */
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.55);
+  text-align: center;
+}
+
+/* Input boxes need width and spacing */
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 12px 0;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.04);
+  color: #e6eef6;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Small page helpers */
+.subtitle {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  margin-top: 10px;
+  color: #ff7b7b;
+}
+
+.demo-info {
+  margin-top: 14px;
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.nav a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.nav a.danger {
+  color: #ff8b8b;
+}
+
+.page-title {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.log-window {
+  background: rgba(0,0,0,0.18);
+  border-radius: 8px;
+  padding: 12px;
+  max-height: 48vh;
+  overflow: auto;
+  color: #e6eef6;
+  font-family: monospace;
+}
+
+.log-line {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+.chart-container {
+  width: 100%;
+  max-height: 320px;
+}

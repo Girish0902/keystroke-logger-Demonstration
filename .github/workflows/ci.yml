@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install & Build Server
+        run: |
+          npm ci
+
+      - name: Install & Build Frontend
+        working-directory: keystroke-ui
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run basic server lint/test (optional)
+        run: |
+          echo "No tests configured" 
+
+# Notes:
+# - To add automatic deploys (Vercel/Render), add a deploy job and configure secrets (VERCEL_TOKEN or RENDER_API_KEY)
+# - Keep sensitive values in GitHub Secrets and document them in README
