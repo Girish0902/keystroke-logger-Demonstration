@@ -44,7 +44,9 @@ app.use(cors({
     if (allowedOrigins.includes(origin)) return cb(null, true);
     // Allow in development if NODE_ENV is not production and origin matches dev defaults
     if (process.env.NODE_ENV !== 'production' && allowedDevOrigins.includes(origin)) return cb(null, true);
-    return cb(new Error('Not allowed by CORS'), false);
+    // Deny by returning false (do not throw) so requests do not cause server error.
+    console.warn('Blocked CORS origin:', origin);
+    return cb(null, false);
   },
   credentials: true,
   allowedHeaders: ['Content-Type','Authorization','X-Consent']
