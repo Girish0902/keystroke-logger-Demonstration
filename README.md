@@ -3,7 +3,7 @@
 A minimal keystroke-logging demo app (for learning & demo purposes).
 
 ## Demo / Live link
-Add your live demo URL here after deployment (e.g. https://your-app.example.com)
+Live demo: https://keystroke-logger-demonstration.vercel.app/
 
 ## Screenshots
 Include a screenshot (e.g., `screenshots/logger.png`) showing the app UI.
